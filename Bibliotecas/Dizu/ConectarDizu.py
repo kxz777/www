@@ -37,6 +37,5 @@ def getTask(accountId, cookies):
 def confirmTask(accountId, task, cookies):
     url      = 'https://dizu.com.br/painel/confirmar_pedido'
     body     = {'tarefa_id' : task['taskId'], 'conta_id': accountId, 'realizado' : 1}
-    print (body)
     response = requests.post(url, data = body , cookies = cookies)    
     return response.text
