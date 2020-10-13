@@ -190,22 +190,32 @@ try:
                     followInsta   = FollowInsta.Follow(driver,xpathFollow)                    
                     followInsta.clickFollow()
 
-                    stage   = "InstaFollow"
-                    event   = "ok"                        
-                    value   = "Followed successfully"
-                    content = ""
-                    log.generateLogData(driver, tempPath, processId, username, stage, event, value, content, viewport, userAgent)  
+                    noticeNum = NoticeInsta.Notice.getNoticeNumber(driver)
+                    errorNum  = ErrorInsta.Error.getErrorNumber(driver)
+                    if errorNum!=False:
+                        stage   = "InstaFollow"
+                        event   = "error"                        
+                        value   = ErrorInsta.Error.getErrorValue(errorNum)
+                        content = ErrorInsta.Error.getErrorContent(errorNum)
+                        log.generateLogData(driver, tempPath, processId, username, stage, event, value, content, viewport, userAgent)
+                        break
+                    else:
+                        stage   = "InstaFollow"
+                        event   = "ok"                        
+                        value   = "Followed successfully"
+                        content = ""
+                        log.generateLogData(driver, tempPath, processId, username, stage, event, value, content, viewport, userAgent)  
 
-                    print("Followed:" + str(x))              
-                    driver.close()
-                    driver.switch_to.window(driver.window_handles[-1])
-                    time.sleep(4)
-                    contectarDizu.clickConfirmar()
-                    stage   = "DizuConfirmar"
-                    event   = "ok"                        
-                    value   = "Confirmed successfully"
-                    content = ""
-                    log.generateLogData(driver, tempPath, processId, username, stage, event, value, content, viewport, userAgent)
+                        print("Followed:" + str(x))              
+                        driver.close()
+                        driver.switch_to.window(driver.window_handles[-1])
+                        time.sleep(4)
+                        contectarDizu.clickConfirmar()
+                        stage   = "DizuConfirmar"
+                        event   = "ok"                        
+                        value   = "Confirmed successfully"
+                        content = ""
+                        log.generateLogData(driver, tempPath, processId, username, stage, event, value, content, viewport, userAgent)
 finally:
     if(errorNum!=False):
         event   = "error"
