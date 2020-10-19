@@ -1,14 +1,11 @@
 import sys
-import os
-from pprint import pprint
 
-
-sys.path.append('/home/centos/www/Bibliotecas')
+sys.path.append('/home/centos/www/Bibliotecas/Selenium')
 import FakeUserAgent
 import ScriptsInjection
 
 from gzip import compress, decompress
-from urllib.parse import urlparse
+#from urllib.parse import urlparse
 from lxml import html
 from lxml.etree import ParserError
 from lxml.html import builder
@@ -101,12 +98,16 @@ class Chrome(object):
             self.hasInjectedJS=True
             return compress(html.tostring(parsed_html))
 
-    def getRestries(self, url, retries, timeout):
+    def getRetries(self, url, retries, timeout):
         driver = self.webdriver
         driver.set_page_load_timeout(timeout)
         for x in range(retries - 1):
             try:
+                ok = True
                 driver.get(url)
+                break
             except:
+                ok = False
                 pass    
             self.hasInjectedJS = False
+        return ok

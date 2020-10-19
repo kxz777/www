@@ -12,7 +12,9 @@ class Error:
         elif "We couldn't connect to Instagram. Make sure you're connected to the internet and try again." in content:
             error = 4
         elif "Please wait a few minutes before you try again." in content:
-            error = 5            
+            error = 5
+        elif "The username you entered doesn't belong to an account. Please check your username and try again." in content:
+            error = 6
         else:
             error = False
         return  error
@@ -28,7 +30,9 @@ class Error:
         elif errorNum == 4:
             res = "could not connect to instagram"
         elif errorNum == 5:
-            res = "wait few minutes"            
+            res = "wait few minutes" 
+        elif errorNum == 6:
+            res = "account name probably does not exist"                        
         return res
 
     @staticmethod
@@ -42,6 +46,8 @@ class Error:
         elif errorNum == 4:
             res = "Error4"
         elif errorNum == 5:
-            res = "Error5"          
+            res = "Error5"   
+        elif errorNum == 6:
+            res = "Error6"                    
         print ("Insta " + res)
         return res    

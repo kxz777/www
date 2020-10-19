@@ -137,7 +137,7 @@ try:
             content = ""
             log.generateLogData(driver, tempPath, processId, username, stage, event, value, content, viewport, userAgent)            
 
-            for x in range(15):
+            for x in range(10):
                 contectarDizu.verificarDisponibilidadeTarefas(log,tempPath,processId,username,viewport,userAgent)
                 contectarDizu.clickVerLink()
                 chrome.hasInjectedJS = False

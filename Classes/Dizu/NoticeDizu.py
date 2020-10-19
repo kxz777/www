@@ -1,10 +1,3 @@
-import Navigate
-import Behaviour
-
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-
 class Notice:
     @staticmethod
     def getNoticeNumber(driver):
@@ -35,7 +28,4 @@ class Notice:
     @staticmethod
     def noticeHandler(driver, noticeNum, loginDizu):
         if noticeNum == 1:
-            print ("aaa")
-            loginDizu.fillUser()
-            loginDizu.fillPass()
-            loginDizu.clickLogin()    
+            print ("placeholder")

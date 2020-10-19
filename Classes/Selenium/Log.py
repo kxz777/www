@@ -18,14 +18,25 @@ class LogCSV(object):
 
         if not os.path.isfile(self.fullPath):
             self.createNewFile()
-      
-    def generateLogData(self, driver, tempPath, processId, username, stage, event, value, content, viewport, userAgent):
+
+    #tira print do webdriver, salva html e console JS  
+    def generateLogDataSelenium(self, driver, tempPath, processId, username, stage, event, value, content, viewport, userAgent):
         name    = stage + "_" + event + ": " + DT.datetime.now().strftime("%Y_%m_%d %H:%M:%S")        
         date    = DT.datetime.now().strftime("%d/%m/%Y")
         hour    = DT.datetime.now().strftime("%H:%M:%S")        
         png     = Debug.Screenshot(driver,tempPath).save(name)
         html    = Debug.HTML(driver,tempPath).save(name)
         js      = driver.get_log('browser')
+        self.insert([processId,username,date,hour,event,stage,value,content,png,html,js,viewport,userAgent])
+
+    #semelhante ao generateLogDataSelenium mas nao tira print e nem salva arquivos
+    def generateLogDataRequests(self, tempPath, processId, username, stage, event, value, content, viewport, userAgent):
+        name    = stage + "_" + event + ": " + DT.datetime.now().strftime("%Y_%m_%d %H:%M:%S")        
+        date    = DT.datetime.now().strftime("%d/%m/%Y")
+        hour    = DT.datetime.now().strftime("%H:%M:%S")        
+        png     = ''
+        html    = ''
+        js      = ''
         self.insert([processId,username,date,hour,event,stage,value,content,png,html,js,viewport,userAgent])
 
     def createNewFile(self):

@@ -91,6 +91,10 @@ class Notice:
             form.clickButton(xpath)      
             Behaviour.Wait.randomWait(4,6)  
         elif noticeNum == 4:
+            Behaviour.Wait.randomWait(10,10)
+            #tem que voltar para uma página que não seja a do perfil para nao dar o mesmo aviso de notice novamente
+            driver.get('https://www.google.com/')
+        elif noticeNum == 5:
             Behaviour.Wait.randomWait(10,10)                                
-            driver.close()
-            driver.switch_to.window(driver.window_handles[-1])
+            #tem que voltar para uma página que não seja a do perfil para nao dar o mesmo aviso de notice novamente
+            driver.get('https://www.google.com/')
