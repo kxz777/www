@@ -19,6 +19,8 @@ class ErrorHandler(object):
         self.log         = log        
         self.lastError   = False
         self.lastNotice  = False
+        self.ignoreListNotice  = []
+        self.ignoreListError   = []
             
     def handle(self, handler, username, stage):
         viewport   = self.log.device
@@ -37,7 +39,7 @@ class ErrorHandler(object):
 
         errorNum   = error.getErrorNumber(driver)
         noticeNum  = notice.getNoticeNumber(driver)
-        if(errorNum!=False):
+        if(errorNum!=False and errorNum not in self.ignoreListError):
             self.lastError = errorNum
             event   = "error"    
             value   = error.getErrorValue(errorNum)
@@ -45,7 +47,7 @@ class ErrorHandler(object):
             self.log.generateLogDataSelenium(driver, tempPath, processId, username, stage, event, value, content, viewport, userAgent)
             ok      = False
         else:
-            while(noticeNum!=False):
+            while(noticeNum!=False and noticeNum not in self.ignoreListNotice):
                 self.lastNotice = noticeNum
                 event   = "notice"                        
                 value   = notice.getNoticeValue(noticeNum)

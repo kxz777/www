@@ -30,9 +30,10 @@ class Follow(object):
         if ok == True and errorHandler.lastNotice != 4 and errorHandler.lastNotice != 5:
             Behaviour.Wait.randomWait(9,10)  
             self.clickFollow()
-
+            
             handler = "Instagram"
             stage   = "InstagramFollow2"  
+            errorHandler.ignoreListNotice = [5] #nao precisa checar se usuario ja estava sendo seguido, pois apos clicar no botao de seguir ele vai dar um falso notice
             ok      = errorHandler.handle(handler, self.loginInsta.username, stage)
 
             if ok == True:
