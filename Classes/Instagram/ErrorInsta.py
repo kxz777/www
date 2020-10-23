@@ -15,6 +15,12 @@ class Error:
             error = 5
         elif "The username you entered doesn't belong to an account. Please check your username and try again." in content:
             error = 6
+        elif "It looks like you may have shared your username and password with an app offering followers or likes" in content:
+            error = 7   
+        elif "Please update your password to help us keep your account safe" in content:
+            error = 8
+        elif "Your Account Was Compromised" in content:
+            error = 9            
         else:
             error = False
         return  error
@@ -32,7 +38,13 @@ class Error:
         elif errorNum == 5:
             res = "wait few minutes" 
         elif errorNum == 6:
-            res = "account name probably does not exist"                        
+            res = "account name probably does not exist"
+        elif errorNum == 7:
+            res = "automation detected1"      
+        elif errorNum == 8:
+            res = "automation detected2"      
+        elif errorNum == 9:
+            res = "automation detected3"                              
         return res
 
     @staticmethod
@@ -48,6 +60,12 @@ class Error:
         elif errorNum == 5:
             res = "Error5"   
         elif errorNum == 6:
-            res = "Error6"                    
+            res = "Error6"  
+        elif errorNum == 7:
+            res = "Error7"      
+        elif errorNum == 8:
+            res = "Error8"     
+        elif errorNum == 9:
+            res = "Error9"                                                
         print ("Insta " + res)
         return res    
