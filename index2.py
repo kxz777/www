@@ -57,6 +57,8 @@ try:
                 ok            = accountId
                 if ok != False:           
                     for x in range(2):
+                        print("inicio")
+                        print(x)
                         task = concectarDizu.getTask(accountId)
                         if task != False:
                             taskId        = task['taskId']
